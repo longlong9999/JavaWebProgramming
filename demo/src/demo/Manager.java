@@ -9,13 +9,13 @@ package demo;
  *
  * @author Thanh Long
  */
-public class Demo {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public abstract class Manager {
+    protected person[] list = null;
+    protected int curr = 0;
     
+    public abstract void add();    
+    public abstract void show();
+    public abstract void search(String name);
+
+
 }

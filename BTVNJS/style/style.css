@@ -1,0 +1,27 @@
+#add{
+	margin-right: 100px;
+	margin-left: 100px;
+}
+#add button{
+	background-color: red;
+}
+#add input{
+	background-color: red;
+}
+.inp>input{
+	width: 200px;
+	border-radius: 5px;
+}
+.err{
+	color: red;
+}
+#body{
+	border: 1px;
+    border-color: black;
+    width: 60%;
+    border-style: solid;
+    padding-left: 1px;
+    margin-left: 250px;
+    border-radius: 10px;
+
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="style/style.css">
+</head>
+<body>
+	<form id="body" action="">
+			<div class="inp">
+				<label>Name</label>
+				<input type="text" name="" value="" id="name" required="" style="margin-left: 200px;" placeholder="Nhập họ và tên">
+				<p class="err" id="errorName"></p>
+			</div>
+			<div class="inp">
+				<label>Giới tính</label>
+				<input type="radio" name="" value="" id="Gioitinh" required="">Nam
+				<input type="radio" name="" value="" id="Gioitinh" required="">Nữ
+				<p class="err" id="errorGioiTinh"></p>
+			</div>
+			<div class="inp">
+				<label>Email</label>
+				<input type="email" name="" id="email" required="" style="margin-left: 200px;" placeholder="Nhập email">
+				<p class="err" id="errorEmail"></p>
+				</div>
+			<div class="inp">
+				<label>Password</label>
+				<input type="password" name="" id="password" required="" style="margin-left: 177px;" placeholder="Nhập mật khẩu">
+				<p class="err" id="errorPassword"></p>
+			</div>
+			<div class="inp">
+				<label>Password again</label>
+				<input type="password" name="" id="passwordagain" required="" style="margin-left: 138px;" placeholder="xác nhận mật khẩu">
+				<p class="err" id="errorPasswordagain"></p>
+			</div>
+			<div class="inp">
+				<label>Số điện thoại</label>
+				<input type="text" name="" id="mobile" required="" style="margin-left: 153px;">
+				<p class="err" id="errorMobile" ></p>
+			</div>
+			<div style="padding-left: 100px;">
+				<button id="add" id="click" onclick="click">Đăng ký</button>
+				<input type="reset" value="Reset">
+			</div>
+					
+	</form>
+</body>
+</html>
+<script type="text/javascript">
+	function validateEmail(email) {
+	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    return re.test(String(email).toLowerCase());
+	}
+	function checkPhoneNumber(phone) {
+		    var flag = false;
+		    phone = phone.replace('(+84)', '0');
+		    phone = phone.replace('+84', '0');
+		    phone = phone.replace('+840', '0');
+		    phone = phone.replace('0084', '0');
+		     phone = phone.replace(/ /g, '');
+		    if (phone != '') {
+		        var firstNumber = phone.substring(0, 2);
+		        if ((firstNumber == '09' || firstNumber == '08' || firstNumber == '03' || firstNumber == '05' || firstNumber == '04' || firstNumber == '06' || firstNumber == '07') && phone.length == 10) {
+		            if (phone.match(/^\d{10}/)) {
+		                flag = true;
+		            }
+		        }
+		    }
+		    return flag;
+		}
+	document.getElementById('add').addEventListener('click',function(e){
+		e.preventDefault();
+		var name=document.getElementById('name');
+		var email=document.getElementById('email');
+		var password=document.getElementById('password');
+		var soDienThoai=document.getElementById('mobile');
+		var passwordagain=document.getElementById('passwordagain');
+		if (name.value.trim()=='') {
+			//Kiem tra ten
+			document.getElementById('errorName').innerHTML='Vui lòng nhập tên, please';
+		}
+		else{
+			document.getElementById('errorName').innerHTML='';
+		}
+		if (email.value.trim()=='') {
+			//Kiem tra ten
+			document.getElementById('errorEmail').innerHTML='Vui lòng nhập email, please';
+		}
+		else if(validateEmail(email.value)){
+			document.getElementById('errorEmail').innerHTML=''
+		}
+		else{
+			document.getElementById('errorEmail').innerHTML='Please nhập đúng định dạng';
+		}
+		if (password.value.trim()=='') {
+			
+			document.getElementById('errorPassword').innerHTML='Vui lòng nhập mật khẩu, please';
+		}
+		else if(password.value.length < 5 || password.value.length >10 ){
+			document.getElementById('errorPassword').innerHTML='Mật khẩu phải lớn hơn 5 và nhỏ hơn 16';
+		}
+		else{
+			document.getElementById('errorPassword').innerHTML='';
+		}
+		if (passwordagain.value.trim()=='') {
+			document.getElementById('errorPasswordagain').innerHTML='Vui lòng nhập lại mật khẩu,please';
+		}
+		else if (passwordagain.value!=password.value) {
+			document.getElementById('errorPasswordagain').innerHTML='Bạn đã nhập sai mk,please nhập đúng mk';
+		}
+		else{
+			document.getElementById('errorPasswordagain').innerHTML='';
+		}
+		if (soDienThoai.value.trim()=='') {
+
+			document.getElementById('errorMobile').innerHTML='Vui lòng nhập số điện thoại, please';
+		}
+			else if (!checkPhoneNumber(soDienThoai.value)) {
+				// kiem tra dinh dang so dien thoai o day
+				document.getElementById('errorMobile').innerHTML = 'Mobile is valid';
+			}
+			else {
+				document.getElementById('errorMobile').innerHTML = '';
+			}
+		
+		
+	})
+	
+</script>
+<script type="text/javascript">
+		function Reset()
+{
+    window.location.reload();
+}
+</script>
